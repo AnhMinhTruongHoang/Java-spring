@@ -34,7 +34,7 @@
             </div>
             <div class="mb-3">
               <label class="form-label">Phone number:</label>
-              <form:input type="text" class="form-control" path="phone"/>
+              <form:input type="number" class="form-control" path="phone"/>
             </div>
             <div class="mb-3">
               <label class="form-label">Full Name:</label>
