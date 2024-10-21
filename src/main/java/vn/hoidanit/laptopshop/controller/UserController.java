@@ -23,9 +23,6 @@ public class UserController {
 
     @RequestMapping("/")
     public String getHomePage(Model model) {
-        User arrUsers = this.userService.getAllUserByEmail("1@gmail.com");
-        
-        System.out.println(arrUsers);
         return "hello";
     }
     ////////////////////////////////////////////////////////////////////////
