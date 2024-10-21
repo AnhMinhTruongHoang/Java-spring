@@ -6,7 +6,7 @@
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Document</title>
+            <title>User List</title>
             <!-- Latest compiled and minified CSS -->
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -36,18 +36,14 @@
                       </tr>
                     </thead>
                     <tbody>
+                     <c:forEach var="user" items="${users1}"> 
                       <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
+                        <th scope="row">${user.id}</th>
+                        <td>${user.email}</td>
+                        <td>${user.fullName}</td>
                         <td><button class="btn btn-info">view</button> <button class="btn btn-warning">update</button> <button class="btn btn-danger">delete</button></td>
                       </tr>
-                      <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td><button class="btn btn-info">view</button> <button class="btn btn-warning">update</button> <button class="btn btn-danger">delete</button></td>
-                      </tr>
+                     </c:forEach>
                     </tbody>
                   </table>
             </body>

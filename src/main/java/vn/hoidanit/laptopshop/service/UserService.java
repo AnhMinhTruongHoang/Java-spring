@@ -21,8 +21,8 @@ public class UserService {
     public List<User> getAllUser(){
         return this.userRepository.findAll();
     }
-    public User getAllUserByEmail(String email){
-        return this.userRepository.findByEmail(email);
+    public List<User> getAllUsersByEmail(String email){
+        return this.userRepository.findOneByEmail(email);
     }
 
     public User handleSaveUser(User user){
