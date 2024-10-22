@@ -4,6 +4,7 @@ package vn.hoidanit.laptopshop.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import vn.hoidanit.laptopshop.Model.User;
@@ -46,6 +47,26 @@ public class UserController {
         System.out.println(">>>"+ users);
         return "admin/user/Table-User";
     }
+    //////////////// view user
+    @RequestMapping("/admin/user/{id}")
+    public String GetUserDetail(Model model, @PathVariable Long id) {
+        User user = this.userService.getUserById(id);
+        model.addAttribute("user", user);
+        model.addAttribute("id", id);
+       
+       
+        return "admin/user/User-View";
+    }
+
+    // @RequestMapping("/admin/user/{id}")
+    // public String UpdateUser(Model model, @PathVariable Long id) {
+    //     User user = this.userService.getUserById(id);
+    //     model.addAttribute("user", user);
+    //     model.addAttribute("id", id);
+       
+       
+    //     return "admin/user/User-Update";
+    // }
     
 
 

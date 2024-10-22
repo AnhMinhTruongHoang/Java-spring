@@ -24,6 +24,9 @@ public class UserService {
     public List<User> getAllUsersByEmail(String email){
         return this.userRepository.findOneByEmail(email);
     }
+    public User getUserById(Long id){
+        return this.userRepository.findUserById(id);
+    }
 
     public User handleSaveUser(User user){
         User allUser = this.userRepository.save(user);
@@ -31,5 +34,6 @@ public class UserService {
         return allUser;
        
     }
+    
        
 }
