@@ -11,6 +11,9 @@ import vn.hoidanit.laptopshop.Model.User;
 import vn.hoidanit.laptopshop.service.UserService;
 import java.util.List;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 
 @Controller
@@ -26,13 +29,13 @@ public class UserController {
     public String getHomePage(Model model) {
         return "hello";
     }
-    ////////////////////////////////////////////////////////////////////////
+    //////////////////////// create
     @RequestMapping("/admin/user/create")
     public String getUserPage(Model model) {
         model.addAttribute("newUser", new User());
         return "admin/user/create";
     }
-    
+    //////////////////////// create button
    @RequestMapping(value = "/admin/user/create", method = RequestMethod.POST)
     public String createUserPage(Model model, @ModelAttribute("newUser") User userdb) {
         this.userService.handleSaveUser(userdb);
@@ -48,26 +51,36 @@ public class UserController {
         return "admin/user/Table-User";
     }
     //////////////// view user
-    @RequestMapping("/admin/user/{id}")
+    @RequestMapping(value = "/admin/user/{id}", method = RequestMethod.GET)
     public String GetUserDetail(Model model, @PathVariable Long id) {
         User user = this.userService.getUserById(id);
         model.addAttribute("user", user);
         model.addAttribute("id", id);
        
-       
         return "admin/user/User-View";
     }
-
-    // @RequestMapping("/admin/user/{id}")
-    // public String UpdateUser(Model model, @PathVariable Long id) {
-    //     User user = this.userService.getUserById(id);
-    //     model.addAttribute("user", user);
-    //     model.addAttribute("id", id);
-       
-       
-    //     return "admin/user/User-Update";
-    // }
     
-
+   // Update user details
+    @RequestMapping(value = "/admin/user/User-Update/{id}")
+    public String UpdateUser(Model model, @PathVariable Long id) {
+        User currentUser = this.userService.getUserById(id);
+        model.addAttribute("newUser", currentUser);
+        
+        return "admin/user/User-Update";
+}
+    /////Update button
+    @PostMapping("/admin/user/User-Update")
+    public String postUpdateUser(Model model, @ModelAttribute("newUser") User userdb) {
+        User currentUser = this.userService.getUserById(userdb.getId());
+        if(currentUser != null){
+           currentUser.setFullName(userdb.getFullName());
+           currentUser.setAddress(userdb.getAddress());
+           currentUser.setPhone(userdb.getPhone());
+           
+           this.userService.handleSaveUser(userdb);
+        }
+        
+        return "redirect:/admin/user";
+}
 
 }

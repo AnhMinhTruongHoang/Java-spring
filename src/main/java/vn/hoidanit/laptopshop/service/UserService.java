@@ -30,7 +30,6 @@ public class UserService {
 
     public User handleSaveUser(User user){
         User allUser = this.userRepository.save(user);
-        System.out.println(allUser);
         return allUser;
        
     }
