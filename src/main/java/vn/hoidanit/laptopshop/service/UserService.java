@@ -33,6 +33,10 @@ public class UserService {
         return allUser;
        
     }
+
+    public void deleteAUser(long id){
+         this.userRepository.deleteById(id);;
+    }
     
        
 }
